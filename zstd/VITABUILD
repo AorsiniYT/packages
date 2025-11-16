@@ -4,6 +4,12 @@ pkgrel=1
 url='https://facebook.github.io/zstd/'
 source=("https://github.com/facebook/zstd/releases/download/v$pkgver/zstd-$pkgver.tar.gz")
 sha256sums=('eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3')
+
+prepare() {
+  cd zstd-$pkgver
+  sed -i "s/POSITION_INDEPENDENT_CODE On/POSITION_INDEPENDENT_CODE OFF/" build/cmake/lib/CMakeLists.txt
+}
+
 build() {
   cd zstd-$pkgver
 
